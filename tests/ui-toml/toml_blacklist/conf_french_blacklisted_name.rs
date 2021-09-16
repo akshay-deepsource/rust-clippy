@@ -13,8 +13,7 @@ fn main() {
     let tatab = 42;
     let tatatataic = 42;
 
-    match (42, Some(1337), Some(0)) {
-        (toto, Some(tata), titi @ Some(_)) => (),
-        _ => (),
+    if let (toto, Some(tata), titi @ Some(_)) = (42, Some(1337), Some(0)) {
+        ()
     }
 }

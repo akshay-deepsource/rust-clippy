@@ -40,20 +40,16 @@ fn lint_cases(opt_opt: Option<Option<u32>>, res_opt: Result<Option<u32>, String>
 
     // if let, match
     if let Ok(val) = res_opt {
-        match val {
-            Some(n) => foo(n),
-            _ => (),
+        if let Some(n) = val {
+            foo(n)
         }
     }
 
     // match, if let
-    match res_opt {
-        Ok(val) => {
-            if let Some(n) = val {
-                take(n);
-            }
-        },
-        _ => {},
+    if let Ok(val) = res_opt {
+        if let Some(n) = val {
+            take(n);
+        }
     }
 
     // if let else, match

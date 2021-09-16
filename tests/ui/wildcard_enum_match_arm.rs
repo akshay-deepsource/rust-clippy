@@ -78,10 +78,7 @@ fn main() {
     // We need to use an enum not defined in this test because non_exhaustive is ignored for the
     // purposes of dead code analysis within a crate.
     let error_kind = ErrorKind::NotFound;
-    match error_kind {
-        ErrorKind::NotFound => {},
-        _ => {},
-    }
+    if let ErrorKind::NotFound = error_kind {}
     match error_kind {
         ErrorKind::NotFound => {},
         ErrorKind::PermissionDenied => {},
@@ -96,9 +93,8 @@ fn main() {
             #[doc(hidden)]
             __Private,
         }
-        match Enum::A {
-            Enum::A => (),
-            _ => (),
+        if let Enum::A = Enum::A {
+            ()
         }
     }
 }

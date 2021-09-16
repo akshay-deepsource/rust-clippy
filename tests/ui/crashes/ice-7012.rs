@@ -7,10 +7,7 @@ enum _MyOption {
 
 impl _MyOption {
     fn _foo(&self) {
-        match self {
-            &Self::Some(_) => {},
-            _ => {},
-        }
+        if let &Self::Some(_) = self {}
     }
 }
 

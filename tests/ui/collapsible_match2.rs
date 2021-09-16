@@ -47,32 +47,26 @@ fn lint_cases(opt_opt: Option<Option<u32>>, res_opt: Result<Option<u32>, String>
     }
 
     // deref reference value
-    match Some(&[1]) {
-        Some(s) => match *s {
-            [n] => foo(n),
-            _ => (),
-        },
-        _ => (),
+    if let Some(s) = Some(&[1]) {
+        if let [n] = *s {
+        foo(n)
+    }
     }
 
     // ref pattern and deref
-    match Some(&[1]) {
-        Some(ref s) => match &*s {
-            [n] => foo(n),
-            _ => (),
-        },
-        _ => (),
+    if let Some(ref s) = Some(&[1]) {
+        if let [n] = &*s {
+        foo(n)
+    }
     }
 }
 
 fn no_lint() {
     // deref inner value (cannot pattern match with Vec)
-    match Some(vec![1]) {
-        Some(s) => match *s {
-            [n] => foo(n),
-            _ => (),
-        },
-        _ => (),
+    if let Some(s) = Some(vec![1]) {
+        if let [n] = *s {
+        foo(n)
+    }
     }
 }
 
