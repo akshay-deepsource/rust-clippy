@@ -21,18 +21,12 @@ fn match_bool() {
         },
     };
 
-    match test {
-        false => {
-            println!("Noooo!");
-        },
-        _ => (),
+    if let false = test {
+        println!("Noooo!");
     };
 
-    match test && test {
-        false => {
-            println!("Noooo!");
-        },
-        _ => (),
+    if let false = test && test {
+        println!("Noooo!");
     };
 
     match test {

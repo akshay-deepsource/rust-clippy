@@ -5,26 +5,18 @@ fn dummy() {}
 fn single_match() {
     let x = Some(1u8);
 
-    match x {
-        Some(y) => {
-            println!("{:?}", y);
-        },
-        _ => (),
+    if let Some(y) = x {
+        println!("{:?}", y);
     };
 
     let x = Some(1u8);
-    match x {
-        // Note the missing block braces.
-        // We suggest `if let Some(y) = x { .. }` because the macro
-        // is expanded before we can do anything.
-        Some(y) => println!("{:?}", y),
-        _ => (),
+    if let Some(y) = x {
+        println!("{:?}", y)
     }
 
     let z = (1u8, 1u8);
-    match z {
-        (2..=3, 7..=9) => dummy(),
-        _ => {},
+    if let (2..=3, 7..=9) = z {
+        dummy()
     };
 
     // Not linted (pattern guards used)
@@ -84,9 +76,8 @@ fn single_match_know_enum() {
 // issue #173
 fn if_suggestion() {
     let x = "test";
-    match x {
-        "test" => println!(),
-        _ => (),
+    if let "test" = x {
+        println!()
     }
 
     #[derive(PartialEq, Eq)]
@@ -97,26 +88,22 @@ fn if_suggestion() {
     }
 
     let x = Foo::A;
-    match x {
-        Foo::A => println!(),
-        _ => (),
+    if let Foo::A = x {
+        println!()
     }
 
     const FOO_C: Foo = Foo::C(0);
-    match x {
-        FOO_C => println!(),
-        _ => (),
+    if let FOO_C = x {
+        println!()
     }
 
-    match &&x {
-        Foo::A => println!(),
-        _ => (),
+    if let Foo::A = &&x {
+        println!()
     }
 
     let x = &x;
-    match &x {
-        Foo::A => println!(),
-        _ => (),
+    if let Foo::A = &x {
+        println!()
     }
 
     enum Bar {
@@ -131,17 +118,15 @@ fn if_suggestion() {
     impl Eq for Bar {}
 
     let x = Bar::A;
-    match x {
-        Bar::A => println!(),
-        _ => (),
+    if let Bar::A = x {
+        println!()
     }
 
     // issue #7038
     struct X;
     let x = Some(X);
-    match x {
-        None => println!(),
-        _ => (),
+    if let None = x {
+        println!()
     };
 }
 

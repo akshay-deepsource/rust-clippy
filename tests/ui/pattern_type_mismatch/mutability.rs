@@ -5,36 +5,30 @@ fn main() {}
 
 fn should_lint() {
     let value = &Some(23);
-    match value {
-        Some(_) => (),
-        _ => (),
+    if let Some(_) = value {
+        ()
     }
 
     let value = &mut Some(23);
-    match value {
-        Some(_) => (),
-        _ => (),
+    if let Some(_) = value {
+        ()
     }
 }
 
 fn should_not_lint() {
     let value = &Some(23);
-    match value {
-        &Some(_) => (),
-        _ => (),
+    if let &Some(_) = value {
+        ()
     }
-    match *value {
-        Some(_) => (),
-        _ => (),
+    if let Some(_) = *value {
+        ()
     }
 
     let value = &mut Some(23);
-    match value {
-        &mut Some(_) => (),
-        _ => (),
+    if let &mut Some(_) = value {
+        ()
     }
-    match *value {
-        Some(_) => (),
-        _ => (),
+    if let Some(_) = *value {
+        ()
     }
 }

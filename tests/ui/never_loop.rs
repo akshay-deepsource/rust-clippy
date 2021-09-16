@@ -40,9 +40,8 @@ fn test4() {
     let mut x = 1;
     loop {
         x += 1;
-        match x {
-            5 => return,
-            _ => (),
+        if let 5 = x {
+            return
         }
     }
 }
@@ -78,9 +77,8 @@ fn test7() {
     let mut x = 0;
     loop {
         x += 1;
-        match x {
-            1 => continue,
-            _ => (),
+        if let 1 = x {
+            continue
         }
         return;
     }
@@ -117,9 +115,8 @@ fn test10() {
 
 fn test11<F: FnMut() -> i32>(mut f: F) {
     loop {
-        return match f() {
-            1 => continue,
-            _ => (),
+        return if let 1 = f() {
+            continue
         };
     }
 }

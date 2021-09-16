@@ -52,9 +52,8 @@ fn test_match(x: Option<Option<String>>, y: Option<Option<String>>) {
         _ => 0,
     };
 
-    match y {
-        Some(Some(s)) => consume(s), // moved
-        _ => (),
+    if let Some(Some(s)) = y {
+        consume(s)
     };
 }
 

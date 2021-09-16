@@ -36,10 +36,7 @@ fn issue2927() {
 }
 
 fn issue3078() {
-    match "a" {
-        stringify!(a) => {},
-        _ => {},
-    }
+    if let stringify!(a) = "a" {}
 }
 
 struct Bar;

@@ -23,9 +23,8 @@ fn main() {
     let foodstuffs = 42;
     let bazaar = 42;
 
-    match (42, Some(1337), Some(0)) {
-        (foo, Some(baz), quux @ Some(_)) => (),
-        _ => (),
+    if let (foo, Some(baz), quux @ Some(_)) = (42, Some(1337), Some(0)) {
+        ()
     }
 }
 
