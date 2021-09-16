@@ -14,7 +14,7 @@ macro_rules! option_env_unwrap {
 }
 
 fn main() {
-    let _ = option_env!("PATH").unwrap();
+    let _ = std::env!("PATH");
     let _ = option_env!("PATH").expect("environment variable PATH isn't set");
     let _ = option_env_unwrap!("PATH");
     let _ = option_env_unwrap!("PATH", "environment variable PATH isn't set");
